@@ -10,12 +10,18 @@ class Product
 	// values only used within class methods
 	protected float $deliveryFee;
 
-
 	public $flowers = [
 		('Red Flower', 'RF1', 32.95),
 		('Green Flower', 'GF1', 22.95),
 		('Blue Flower', 'BF1', 72.95)
-	]
+	];
+		
+	// functions
+	
+	public function emptyCart(){
+		$this->cart = array();
+		return $this->cart;
+	}
 
 	private function determineDeliveryFee($orderTotal){
 		case $orderTotal < 50:
