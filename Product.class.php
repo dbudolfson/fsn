@@ -35,7 +35,7 @@ class Product
 		return $fee;		
 	}
 
-	private function determineDeal($cart){
+	private function determineRedFlowerDeal($cart){
 		$redFlower = 'Red Flower';//self::FLOWERS[0][0];
 		$count = 0;
 		$cartCount = count($cart);
@@ -67,7 +67,7 @@ class Product
 
 function evaluateCart($cart){
 		// evaluate for deals
-		$cart = self::determineDeal($cart);
+		$cart = self::determineRedFlowerDeal($cart);
 		
 		$total = 0.00;
 		foreach($cart as $item){
