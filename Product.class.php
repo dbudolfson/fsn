@@ -38,7 +38,7 @@ class Product
 
 	private function determineDeal(){
 		$redFlower = self::flowers[1];
-		$count = 0;
+		count = 0;
 		$cartCount = count($this->cart);
 		for($i = 0; $i < $cartCount; $i++){
 			//if there are 2 red flowers in the array, one of them is half price
@@ -52,27 +52,26 @@ class Product
 		return $cart;
 	}
 
-}
-
-
-function addToCart($code){
-	$flowers = Product::FLOWERS;
-	foreach($flowers as $flower){
-		if($code == $flower[2]){
-			$cart[] = $flower; 
+	function addToCart($code){
+		$flowers = Product::FLOWERS;
+		foreach($flowers as $flower){
+			if($code == $flower[2]){
+				$cart[] = $flower; 
+			}
 		}
 	}
-};
 
 function evaluateCart(){
-	// evaluate for deals
-	$cart = Product::determineDeal($cart);
-	// assess delivery fee
-	$deliveryFee = Product::deliveryFee;
+		// evaluate for deals
+		$this->cart = self::determineDeal($this->cart);
+		// assess delivery fee
+		$this->deliveryFee = self::determineDeliveryFee;
 
-	$total = 0.00;
-	foreach($cart as $item){
-		$total += $item[2];
+		$total = 0.00;
+		foreach($this->cart as $item){
+			$total += $item[2];
+		}
+		return $total;
 	}
-	return $total;
-};
+
+}
