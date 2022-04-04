@@ -22,20 +22,21 @@ class Product
 		if(!is_array($codes)){
 			$codes = array($codes);
 		}
+		var_dump($codes);
 		$cart = array();
 		$flowers = Product::FLOWERS;
 		foreach($codes as $code){
 			foreach($flowers as $flower){
 				if($code == $flower[1]){
-					$this->cart[] = [
+					$this->cart[] = array(
 						"name" => $flower[0],
 						"code" => $code,
 						'price' => $flower[2]
-					]; //$flower; 
+					); //$flower; 
 				}
 			}
 		}
-		self::evaluateCart();
+		
 		return $cart;
 	}
 
@@ -78,10 +79,10 @@ class Product
 		$cartCount = count($this->cart);
 		for($i = 1; $i < $cartCount; $i++){
 			//if there are 2 red flowers in the array, one of them is half price
-			if($this->cart[$i][0] == $redFlower){
+			if($this->cart[$i]['name'] == $redFlower){
 				//for every second flower, half the price
 				if(($i +1) % 2 == 0){
-					$this->cart[$i][2] = number_format($this->cart[$i][2] / 2, 2, '.', '') ;
+					$this->cart[$i]['price'] = number_format($this->cart[$i]['price'] / 2, 2, '.', '') ;
 				}
 			}
 		}
@@ -91,7 +92,19 @@ class Product
 
 }
 
-// cases
+/*// cases
 $x = new Product();
 $x->addToCart('RF1');
+var_dump($x->evaluateCart());*/
+
+/*$x = new Product();
+$x->addToCart(array('RF1', 'RF1'));
+var_dump($x->evaluateCart());*/
+
+/*$x = new Product();
+$x->addToCart(array('RF1', 'GF1'));
+var_dump($x->evaluateCart());*/
+
+$x = new Product();
+$x->addToCart(array('BF1', 'BF1','RF1','RF1', 'RF1'));
 var_dump($x->evaluateCart());
