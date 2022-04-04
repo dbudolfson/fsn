@@ -77,11 +77,12 @@ class Product
 		$redFlower = self::FLOWERS[0][0];
 		$count = 0;
 		$cartCount = count($this->cart);
-		for($i = 1; $i < $cartCount; $i++){
-			//if there are 2 red flowers in the array, one of them is half price
+		for($i = 0; $i < $cartCount; $i++){
+			//every second red flower should be half price
 			if($this->cart[$i]['name'] == $redFlower){
+				$count++;
 				//for every second flower, half the price
-				if(($i +1) % 2 == 0){
+				if($count % 2 == 0){
 					$this->cart[$i]['price'] = (floor((((float)$this->cart[$i]['price']) / 2)*100)/100 );
 				}
 			}
@@ -96,7 +97,7 @@ class Product
 /*$x = new Product();
 $x->addToCart('RF1');*/
 
-$x = new Product();
+/*$x = new Product();
 $x->addToCart(array('BF1', 'GF1'));
 
 $x = new Product();
@@ -106,4 +107,7 @@ $x = new Product();
 $x->addToCart(array('RF1', 'GF1'));
 
 $x = new Product();
-$x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);
+$x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);*/
+
+$x = new Product();
+$x->addToCart(['RF1','BF1', 'RF1','BF1','RF1','RF1','RF1']);
