@@ -1,6 +1,18 @@
 # fsn
 fsn assessment
 
+variables:
+  public array $cart;
+	
+	protected float $deliveryFee;
+	protected float $total;
+
+	const FLOWERS = [
+		['Red Flower', 'RF1', 32.95],
+		['Green Flower', 'GF1', 22.95],
+		['Blue Flower', 'BF1', 72.95]
+	];
+
 How it was made:
 1) Made with PHP
 
