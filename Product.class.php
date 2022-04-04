@@ -52,7 +52,7 @@ class Product
 		// assess delivery fee
 		$this->deliveryFee = self::determineDeliveryFee();
 		echo "deliveryFee: ". $this->deliveryFee . "\n";
-		$this->total = number_format($this->total + $deliveryFee, 2);
+		$this->total = number_format($this->total + $this->deliveryFee, 2);
 		echo "Total: ". $this->total . "\n";
 		
 		return $this;
