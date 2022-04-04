@@ -2,9 +2,9 @@
 
 class Product
 {
-	public float $price,
-	public string $name,
-	public string $code,
+	public float $price;
+	public string $name;
+	public string $code;
 	public array $cart();
 	
 	// values only used within class methods
