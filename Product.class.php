@@ -46,14 +46,14 @@ class Product
 		$this->total = 0.00;
 		foreach($this->cart as $item){
 			$this->total += $item['price'];
-			echo "Item Name: ". $item['name'] ." Item Price: ". $item['price'] . "\n";
+			echo "Item Name: ". $item['name'] ." Item Price: $". $item['price'] . "\n";
 		}
 		
 		// assess delivery fee
 		$this->deliveryFee = self::determineDeliveryFee();
-		echo "deliveryFee: ". $this->deliveryFee . "\n";
+		echo "deliveryFee: $". $this->deliveryFee . "\n";
 		$this->total = number_format($this->total + $this->deliveryFee, 2);
-		echo "Total: ". number_format($this->total,2) . "\n";
+		echo "Total: $". number_format($this->total,2) . "\n";
 		
 		return $this;
 	}
