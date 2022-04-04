@@ -16,7 +16,6 @@ class Product
 		['Blue Flower', 'BF1', 72.95]
 	];
 		
-	// functions
 	
 	public function emptyCart(){
 		$this->cart = array();
