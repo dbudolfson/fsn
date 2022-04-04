@@ -36,7 +36,7 @@ class Product
 				}
 			}
 		}
-		
+		$this->evaluateCart();
 		return $cart;
 	}
 
@@ -50,7 +50,7 @@ class Product
 		}
 		
 		// assess delivery fee
-		$deliveryFee = self::determineDeliveryFee();
+		$this->deliveryFee = self::determineDeliveryFee();
 		echo "deliveryFee: ". $this->deliveryFee . "\n";
 		$this->total = number_format($this->total + $deliveryFee, 2);
 		echo "Total: ". $this->total . "\n";
@@ -107,4 +107,3 @@ var_dump($x->evaluateCart());*/
 
 $x = new Product();
 $x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);
-var_dump($x->evaluateCart());
