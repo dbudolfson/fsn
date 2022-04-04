@@ -83,7 +83,8 @@ class Product
 				$count++;
 				//for every second flower, half the price
 				if($count % 2 == 0){
-					$this->cart[$i]['price'] = (floor((((float)$this->cart[$i]['price']) / 2)*100)/100 );
+					//ensure price rounds down
+					$this->cart[$i]['price'] = (floor(($this->cart[$i]['price'] / 2)*100)/100 );
 				}
 			}
 		}
@@ -110,4 +111,4 @@ $x = new Product();
 $x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);*/
 
 $x = new Product();
-$x->addToCart(['RF1','BF1', 'RF1','BF1','RF1','RF1','RF1']);
+$x->addToCart(['RF1','BF1', 'RF1','BF1','RF1','RF1','RF1','GF1','RF1','RF1','RF1']);
