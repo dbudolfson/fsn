@@ -10,8 +10,8 @@ class Product
 
 	const FLOWERS = [
 		['Red Flower', 'RF1', 32.95],
-		['Green Flower', 'GF1', 22.95],
-		['Blue Flower', 'BF1', 72.95]
+		['Green Flower', 'GF1', 24.95],
+		['Blue Flower', 'BF1', 7.95]
 	];
 		
 	public function __construct(){
@@ -82,7 +82,7 @@ class Product
 			if($this->cart[$i]['name'] == $redFlower){
 				//for every second flower, half the price
 				if(($i +1) % 2 == 0){
-					$this->cart[$i]['price'] = number_format((float)$this->cart[$i]['price'] / 2, 2, '.', '');2 ;
+					$this->cart[$i]['price'] = (floor((((float)$this->cart[$i]['price']) / 2)*100)/100 );
 				}
 			}
 		}
@@ -93,8 +93,11 @@ class Product
 }
 
 // cases
+/*$x = new Product();
+$x->addToCart('RF1');*/
+
 $x = new Product();
-$x->addToCart('RF1');
+$x->addToCart(array('BF1', 'GF1'));
 
 $x = new Product();
 $x->addToCart(array('RF1', 'RF1'));
