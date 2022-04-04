@@ -33,45 +33,70 @@ class Product
 			default:
 				$fee = 0.00;
 		}
-		
+		return $fee;		
 	}
 
-	private function determineDeal(){
-		$redFlower = self::flowers[1];
-		count = 0;
-		$cartCount = count($this->cart);
-		for($i = 0; $i < $cartCount; $i++){
+	private function determineDeal($cart){
+		$redFlower = 'Red Flower';//self::FLOWERS[0][0];
+		$count = 0;
+		$cartCount = count($cart);
+		for($i = 1; $i < $cartCount; $i++){
 			//if there are 2 red flowers in the array, one of them is half price
-			if($array[$i] == $redFlower){
+			if($cart[$i][0] == $redFlower){
 				//for every second flower, half the price
-				if($i % 2 == 0){
-					$this->cart[$i]->price = number_format($this->cart[$i]->price / 2, 2, '.', '') ;
+				if(($i +1) % 2 == 0){
+					$cart[$i][2] = number_format($cart[$i][2] / 2, 2, '.', '') ;
 				}
 			}
 		}
 		return $cart;
 	}
 
-	function addToCart($code){
+	function addToCart($codes){
+		$cart = array();
 		$flowers = Product::FLOWERS;
-		foreach($flowers as $flower){
-			if($code == $flower[2]){
-				$cart[] = $flower; 
+		foreach($codes as $code){
+			foreach($flowers as $flower){
+				if($code == $flower[1]){
+					$cart[] = $flower; 
+				}
 			}
 		}
+		self::evaluateCart($cart);
+		return $cart;
 	}
 
-function evaluateCart(){
+function evaluateCart($cart){
 		// evaluate for deals
-		$this->cart = self::determineDeal($this->cart);
-		// assess delivery fee
-		$this->deliveryFee = self::determineDeliveryFee;
-
+		$cart = self::determineDeal($cart);
+		
 		$total = 0.00;
-		foreach($this->cart as $item){
+		foreach($cart as $item){
 			$total += $item[2];
+			echo "Item Name: ". $item[0] ." Item Price: ". $item[2] . "\n";
 		}
+		
+		// assess delivery fee
+		$deliveryFee = self::determineDeliveryFee($total);
+		echo "deliveryFee: ". $deliveryFee . "\n";
+		$total = number_format($total + $deliveryFee, 2);
+		echo "Total: ". $total . "\n";
+		
 		return $total;
+		$cart = self::emptyCart($cart); // empty the array
 	}
 
 }
+
+// test cases
+$cart = Product::addToCart(array('BF1', 'GF1'));
+//$total = Product::evaluateCart($cart);
+
+$cart = Product::addToCart(array ('RF1', 'RF1'));
+//$total = Product::evaluateCart($cart);
+
+$cart = Product::addToCart(array ('RF1', 'GF1'));
+//$total = Product::evaluateCart($cart);
+
+$cart = Product::addToCart(array ('BF1', 'BF1', 'RF1', 'RF1', 'RF1' ));
+//$total = Product::evaluateCart($cart);
