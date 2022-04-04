@@ -1,16 +1,18 @@
 <?php
 
+<?php
+
 class Product
 {
 	public float $price;
 	public string $name;
 	public string $code;
-	public array $cart();
+	public array $cart;
 	
 	// values only used within class methods
 	protected float $deliveryFee;
 
-	public $flowers = [
+	const FLOWERS = [
 		('Red Flower', 'RF1', 32.95),
 		('Green Flower', 'GF1', 22.95),
 		('Blue Flower', 'BF1', 72.95)
@@ -49,26 +51,27 @@ class Product
 		return $cart;
 	}
 
-	public function addToCart($code){
-		$flowers = self::flowers;
-		foreach($flowers as $flower){
-			if($code == $flower[2]){
-				$cart[] = $flower; 
-			}
+}
+
+
+public function addToCart($code){
+	$flowers = Product::FLOWERS;
+	foreach($flowers as $flower){
+		if($code == $flower[2]){
+			$cart[] = $flower; 
 		}
 	}
+}
 
-	public function evaluateCart(){
-		// evaluate for deals
-		$this->cart = self::determineDeal($this->cart);
-		// assess delivery fee
-		$this->deliveryFee = self::determineDeliveryFee;
+public function evaluateCart(){
+	// evaluate for deals
+	$this->cart = self::determineDeal($this->cart);
+	// assess delivery fee
+	$this->deliveryFee = self::determineDeliveryFee;
 
-		$total = 0.00;
-		foreach($this->cart as $item){
-			$total += $item[2];
-		}
-		return $total;
+	$total = 0.00;
+	foreach($this->cart as $item){
+		$total += $item[2];
 	}
-
+	return $total;
 }
