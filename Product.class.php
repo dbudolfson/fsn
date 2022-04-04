@@ -80,7 +80,7 @@ class Product
 			if($this->cart[$i]['name'] == $redFlower){
 				//for every second flower, half the price
 				if(($i +1) % 2 == 0){
-					$this->cart[$i]['price'] = number_format($this->cart[$i]['price'] / 2, 2, '.', '') ;
+					$this->cart[$i]['price'] = number_format((float)$this->cart[$i]['price'] / 2, 2, '.', '');2 ;
 				}
 			}
 		}
