@@ -18,7 +18,6 @@ class Product
 		
 	}
 
-
 	function addToCart($codes){
 		if(!is_array($codes)){
 			$codes = array($codes);
@@ -55,7 +54,7 @@ class Product
 		$this->total = number_format($this->total + $this->deliveryFee, 2);
 		echo "Total: $". number_format($this->total,2) . "\n";
 		
-		return $this;
+		return;
 	}
 
 	private function determineDeliveryFee(){
@@ -90,8 +89,6 @@ class Product
 		}
 		return $this->cart;
 	}
-
-
 }
 
 // cases
