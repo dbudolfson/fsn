@@ -42,7 +42,7 @@ class Product
 
 	function evaluateCart(){
 		// evaluate for deals
-		$this->cart = self::determineRedFlowerDeal($this->cart);
+		$this->cart = self::determineRedFlowerDeal();
 		$this->total = 0.00;
 		foreach($this->cart as $item){
 			$this->total += $item['price'];
@@ -50,7 +50,7 @@ class Product
 		}
 		
 		// assess delivery fee
-		$deliveryFee = self::determineDeliveryFee($this->total);
+		$deliveryFee = self::determineDeliveryFee();
 		echo "deliveryFee: ". $this->deliveryFee . "\n";
 		$this->total = number_format($this->total + $deliveryFee, 2);
 		echo "Total: ". $this->total . "\n";
