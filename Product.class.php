@@ -53,7 +53,7 @@ class Product
 		$this->deliveryFee = self::determineDeliveryFee();
 		echo "deliveryFee: ". $this->deliveryFee . "\n";
 		$this->total = number_format($this->total + $this->deliveryFee, 2);
-		echo "Total: ". $this->total . "\n";
+		echo "Total: ". number_format($this->total,2) . "\n";
 		
 		return $this;
 	}
@@ -92,18 +92,15 @@ class Product
 
 }
 
-/*// cases
+// cases
 $x = new Product();
 $x->addToCart('RF1');
-var_dump($x->evaluateCart());*/
 
-/*$x = new Product();
+$x = new Product();
 $x->addToCart(array('RF1', 'RF1'));
-var_dump($x->evaluateCart());*/
 
-/*$x = new Product();
+$x = new Product();
 $x->addToCart(array('RF1', 'GF1'));
-var_dump($x->evaluateCart());*/
 
 $x = new Product();
 $x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);
