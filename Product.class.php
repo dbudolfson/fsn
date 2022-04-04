@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
 class Product
 {
 	public float $price;
@@ -13,9 +11,9 @@ class Product
 	protected float $deliveryFee;
 
 	const FLOWERS = [
-		('Red Flower', 'RF1', 32.95),
-		('Green Flower', 'GF1', 22.95),
-		('Blue Flower', 'BF1', 72.95)
+		['Red Flower', 'RF1', 32.95],
+		['Green Flower', 'GF1', 22.95],
+		['Blue Flower', 'BF1', 72.95]
 	];
 		
 	// functions
@@ -25,19 +23,22 @@ class Product
 	}
 
 	private function determineDeliveryFee($orderTotal){
-		case $orderTotal < 50:
+		switch($orderTotal){
+			case $orderTotal < 50:
 			$fee = 4.95;
 			break;
-		case $orderTotal < 90:
-			$fee = 2.95;
-			break;
-		default:
-			$fee = 0.00;
+			case $orderTotal < 90:
+				$fee = 2.95;
+				break;
+			default:
+				$fee = 0.00;
+		}
+		
 	}
 
 	private function determineDeal(){
 		$redFlower = self::flowers[1];
-		var count = 0;
+		$count = 0;
 		$cartCount = count($this->cart);
 		for($i = 0; $i < $cartCount; $i++){
 			//if there are 2 red flowers in the array, one of them is half price
@@ -54,24 +55,24 @@ class Product
 }
 
 
-public function addToCart($code){
+function addToCart($code){
 	$flowers = Product::FLOWERS;
 	foreach($flowers as $flower){
 		if($code == $flower[2]){
 			$cart[] = $flower; 
 		}
 	}
-}
+};
 
-public function evaluateCart(){
+function evaluateCart(){
 	// evaluate for deals
-	$this->cart = self::determineDeal($this->cart);
+	$cart = Product::determineDeal($cart);
 	// assess delivery fee
-	$this->deliveryFee = self::determineDeliveryFee;
+	$deliveryFee = Product::deliveryFee;
 
 	$total = 0.00;
-	foreach($this->cart as $item){
+	foreach($cart as $item){
 		$total += $item[2];
 	}
 	return $total;
-}
+};
