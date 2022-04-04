@@ -6,6 +6,7 @@ class Product
 	
 	// values only used within class methods
 	protected float $deliveryFee;
+	protected float $total;
 
 	const FLOWERS = [
 		['Red Flower', 'RF1', 32.95],
@@ -42,27 +43,28 @@ class Product
 	function evaluateCart(){
 		// evaluate for deals
 		$this->cart = self::determineRedFlowerDeal($this->cart);
-		$total = 0.00;
+		$this->total = 0.00;
 		foreach($this->cart as $item){
-			$total += $item['price'];
+			$this->total += $item['price'];
 			echo "Item Name: ". $item['name'] ." Item Price: ". $item['price'] . "\n";
 		}
 		
 		// assess delivery fee
-		$deliveryFee = self::determineDeliveryFee($total);
+		$deliveryFee = self::determineDeliveryFee($this->total);
 		echo "deliveryFee: ". $this->deliveryFee . "\n";
-		$total = number_format($total + $deliveryFee, 2);
-		echo "Total: ". $total . "\n";
+		$this->total = number_format($this->total + $deliveryFee, 2);
+		echo "Total: ". $this->total . "\n";
 		
 		return $this;
 	}
 
-	private function determineDeliveryFee($orderTotal){
-		switch($orderTotal){
-			case $orderTotal < 50:
+	private function determineDeliveryFee(){
+		$total = $this->total;
+		switch($total){
+			case $total < 50:
 				$this->deliveryFee = 4.95;
 			break;
-			case $orderTotal < 90:
+			case $total < 90:
 				$this->deliveryFee = 2.95;
 				break;
 			default:
