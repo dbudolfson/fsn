@@ -22,7 +22,6 @@ class Product
 		if(!is_array($codes)){
 			$codes = array($codes);
 		}
-		var_dump($codes);
 		$cart = array();
 		$flowers = Product::FLOWERS;
 		foreach($codes as $code){
@@ -43,7 +42,6 @@ class Product
 	function evaluateCart(){
 		// evaluate for deals
 		$this->cart = self::determineRedFlowerDeal($this->cart);
-		//var_dump($this->cart);die();
 		$total = 0.00;
 		foreach($this->cart as $item){
 			$total += $item['price'];
@@ -106,5 +104,5 @@ $x->addToCart(array('RF1', 'GF1'));
 var_dump($x->evaluateCart());*/
 
 $x = new Product();
-$x->addToCart(array('BF1', 'BF1','RF1','RF1', 'RF1'));
+$x->addToCart(['BF1', 'BF1','RF1','RF1', 'RF1']);
 var_dump($x->evaluateCart());
