@@ -20,7 +20,6 @@ class Product
 	
 	public function emptyCart(){
 		$this->cart = array();
-		return $this->cart;
 	}
 
 	private function determineDeliveryFee($orderTotal){
